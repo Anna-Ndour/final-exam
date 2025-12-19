@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Empire</title>
+
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/empire.css" />
+
+  <script type="module" src="js/empire.js" defer></script>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <span class="menu-btn">☰</span>
+
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <input type="text" id="searchInput" placeholder="Search empire...">
+      <!-- Login/Logout button injecté par JS -->
+    </div>
+  </nav>
+
+  <aside class="sidebar" id="sidebar">
+    <h3>Empires</h3>
+    <ul id="sidebar-list"></ul>
+  </aside>
+
+  <main class="page">
+
+
+    <section class="section two-columns">
+      <div class="image-box">
+        <img id="empire-image" />
+      </div>
+      <div class="text-box">
+        <h1 id="empire-name"></h1>
+        <p id="empire-description"></p>
+      </div>
+    </section>
+
+
+    <section class="section two-columns">
+      <div class="image-box">
+        <img id="geo-image" />
+      </div>
+      <div class="text-box">
+        <h2>Geography</h2>
+        <p id="geo-text"></p>
+      </div>
+    </section>
+
+
+    <section class="section">
+      <h2>Kings</h2>
+      <div id="rulers-container"></div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>

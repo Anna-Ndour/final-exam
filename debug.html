@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Debug Supabase</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        .log {
+            background: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Supabase Connection Debugger</h1>
+    <button id="testBtn">Test Connection</button>
+    <div id="output" class="log">Ready to test...</div>
+
+    <script type="module">
+        import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+        const supabaseUrl = "https://pzfckwvctcrompfhax.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6Y2ZrY3dudmN0Y3JvbXBmaGF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5OTE3MTksImV4cCI6MjA4MTU2NzcxOX0.-SgGtI4RNILOwi4tqqatHgpRMANx3mMDrlQMY__ofZk";
+
+        const output = document.getElementById("output");
+
+        function log(msg, type = "") {
+            const line = document.createElement("div");
+            line.textContent = msg;
+            if (type) line.className = type;
+            output.appendChild(line);
+        }
+
+        document.getElementById("testBtn").addEventListener("click", async () => {
+            output.innerHTML = "";
+            log("Initializing Supabase Client...");
+
+            try {
+                const supabase = createClient(supabaseUrl, supabaseKey);
+
+                log("Testing simple fetch to Supabase URL...");
+                try {
+                    const resp = await fetch(supabaseUrl);
+                    log(`Ping Supabase Root: ${resp.status} ${resp.statusText}`, "success");
+                } catch (e) {
+                    log(`Ping Failed: ${e.message}`, "error");
+                    log("Possible causes: Internet down, AdBlocker, DNS issue.");
+                }
+
+                log("Testing Database Connection (Select from empires)...");
+                const { data, error } = await supabase.from("empires").select("count", { count: 'exact', head: true });
+
+                if (error) {
+                    log(`DB Error: ${error.message}`, "error");
+                    console.error(error);
+                } else {
+                    log("DB Connection SUCCESS!", "success");
+                }
+
+            } catch (err) {
+                log(`Critical Error: ${err.message}`, "error");
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+
+</html>

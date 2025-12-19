@@ -1,65 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>African Empires</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>African Kingdoms</title>
+
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/layout.css">
 </head>
+
 <body>
 
-  <!-- NAVBAR -->
-<nav class="navbar">
-  <!-- LEFT : menu button -->
-  <div class="nav-left">
 
-    <span class="menu-btn" onclick="toggleSidebar()">☰</span>
-  </div>
+  <nav class="navbar">
+    <span class="menu-btn">☰</span>
 
-  <!-- RIGHT : home + search -->
-  <div class="nav-right">
-    <a href="index.html">Home</a>
-    <input type="text" id="searchInput" placeholder="Search empire...">
-  </div>
-</nav>
+    <div class="nav-right">
+      <a href="index.html">Home</a>
+      <input type="text" id="searchInput" placeholder="Search empire...">
+      <!-- Login/Logout button sera injecté par JS -->
+    </div>
+  </nav>
 
-</div>
+  <aside class="sidebar" id="sidebar">
+    <h3>Empires</h3>
+    <ul id="sidebar-list">
+      <!-- Liste chargée dynamiquement -->
+    </ul>
+  </aside>
 
-<script src="js/script.js"></script>
 
+  <main class="home-page">
 
-  <!-- MAIN CONTAINER -->
-  <div class="container">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h3>Empires</h3>
-      <ul>
-        <li><a href="mali.html">Mali Empire</a></li>
-        <li><a href="songhai.html">Songhai Empire</a></li>
-        <li><a href="egypt.html">Ancient Egypt</a></li>
-      </ul>
-    </aside>
-
-    <!-- CONTENT -->
-    <main class="content">
-      <h1>Welcome</h1>
-      <p class="intro">
-        This website presents three major African empires that marked world history.
-        The Mali Empire, the Ghana Empire and Ancient Egypt were powerful civilizations
-        known for their wealth, culture, organization and influence.
-        Through this site, you can learn more about each empire by navigating
-        through the different pages.
+    <section class="intro">
+      <h1>African Kingdoms</h1>
+      <p>
+        This website presents three major African empires that marked world history:
+        Mali, Songhai, and Ancient Egypt.
       </p>
+    </section>
 
-      <div class="image-row">
+
+    <section class="cards">
+
+      <div class="card">
         <img src="images/images-mali.jpg" alt="Mali Empire">
-        <img src="images/songhai-main.jpg" alt="songhai Empire">
-        <img src="images/egypt.jpg" alt="Ancient Egypt">
+        <h2>Mali Empire</h2>
+        <p>One of the richest empires in West African history.</p>
+        <a href="empire.html?slug=mali">Explore</a>
       </div>
-    </main>
 
-  </div>
+      <div class="card">
+        <img src="images/songhai-main.jpg" alt="Songhai Empire">
+        <h2>Songhai Empire</h2>
+        <p>A powerful empire centered around the Niger River.</p>
+        <a href="empire.html?slug=songhai">Explore</a>
+      </div>
 
-  <script src="js/script.js"></script>
+      <div class="card">
+        <img src="images/egypt.jpg" alt="Ancient Egypt">
+        <h2>Ancient Egypt</h2>
+        <p>One of the most influential civilizations in history.</p>
+        <a href="empire.html?slug=egypt">Explore</a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="js/home.js"></script>
+
 </body>
+
 </html>

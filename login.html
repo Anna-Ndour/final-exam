@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+
+  <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+  <div class="login-container">
+    <h1 id="form-title">Login</h1>
+
+    <div id="error-box" class="error-message"></div>
+
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+      <button type="submit" id="submit-btn">Login</button>
+    </form>
+
+    <!-- Hidden separate signup form not needed if reusing inputs, we reuse inputs for simplicity -->
+    <form id="signup-form" style="display:none"></form>
+
+    <p class="toggle-text" id="toggle-text">
+      Don't have an account? <span id="toggle-link">Sign up</span>
+    </p>
+
+
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+
+</body>
+
+</html>
