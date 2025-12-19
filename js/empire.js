@@ -2,7 +2,6 @@ import { requireAuth } from "./auth.js";
 import { initUI } from "./ui.js";
 import { MOCK_EMPIRES, MOCK_RULERS } from "./mock_data.js";
 
-// Protection et UI
 await requireAuth();
 initUI();
 
@@ -11,7 +10,6 @@ const params = new URLSearchParams(window.location.search);
 const slug = params.get("slug");
 
 if (!slug) {
-  // redirect or show error, but stay safe
   console.warn("No slug provided");
 }
 
@@ -25,8 +23,6 @@ async function loadEmpire() {
     if (page) page.innerHTML = "<h1>Empire not found</h1>";
     return;
   }
-
-  // Mapping sécurisé
   const setContent = (id, value) => {
     const el = document.getElementById(id);
     if (el) {
@@ -40,9 +36,6 @@ async function loadEmpire() {
   setContent("empire-image", empire.image_main || empire.home_image);
   setContent("geo-text", empire.geography);
   setContent("geo-image", empire.geography_image);
-
-
-  // Load Rulers
   const rulers = MOCK_RULERS.filter(r => r.empire_slug === slug);
 
   const container = document.getElementById("rulers-container");
@@ -58,7 +51,7 @@ async function loadEmpire() {
 
       div.innerHTML = `
         <div class="image-box">
-          <img src="${ruler.image}" alt="${ruler.name}" onerror="this.src='images/images-mali.jpg'"> <!-- Fallback image -->
+          <img src="${ruler.image}" alt="${ruler.names}" onerror="this.src='images/images-mali.jpg'">
         </div>
         <div class="text-box">
           <h3>${ruler.names}</h3>

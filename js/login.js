@@ -1,6 +1,6 @@
 import { signIn, signUp, redirectIfLoggedIn } from "./auth.js";
 
-// Rediriger si déjà connecté
+
 redirectIfLoggedIn();
 
 const loginForm = document.getElementById("login-form");
@@ -26,12 +26,10 @@ function toggleMode() {
         toggleText.innerHTML = "Already have an account? <span id='toggle-link'>Login</span>";
     }
 
-    // Re-attach event listener to the new span
     document.getElementById("toggle-link").addEventListener("click", toggleMode);
     errorBox.textContent = "";
 }
 
-// Initial listener
 document.getElementById("toggle-link").addEventListener("click", toggleMode);
 
 loginForm.addEventListener("submit", async (e) => {
@@ -55,7 +53,6 @@ loginForm.addEventListener("submit", async (e) => {
         errorBox.textContent = error.message;
     } else {
         if (!isLoginMode && !data.session) {
-            // Cas où le signUp demande une confirmation email, selon config Supabase
             errorBox.textContent = "Account created! Please check your email if confirmation is required, or try logging in.";
         } else {
             window.location.href = "index.html";

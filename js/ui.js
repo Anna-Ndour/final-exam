@@ -1,14 +1,14 @@
 import { signOut, getCurrentUser } from "./auth.js";
 import { MOCK_EMPIRES } from "./mock_data.js";
 
-// === Navbar & Auth State ===
+
 export async function initNavbar() {
     const user = await getCurrentUser();
     const navRight = document.querySelector(".nav-right");
 
     if (!navRight) return;
 
-    // Supprimer les anciens boutons
+    
     const oldBtn = document.getElementById("auth-btn");
     if (oldBtn) oldBtn.remove();
 
@@ -24,7 +24,6 @@ export async function initNavbar() {
         });
         navRight.appendChild(logoutBtn);
     } else {
-        // Si pas l'élément user (donc pas connecté), on affiche le login
         const loginLink = document.createElement("a");
         loginLink.href = "login.html";
         loginLink.textContent = "Login / Sign up";
@@ -33,7 +32,7 @@ export async function initNavbar() {
     }
 }
 
-// === Sidebar Logic ===
+
 export async function initSidebar() {
     console.log("Initializing Sidebar (Offline Mode)...");
     const menuBtn = document.querySelector(".menu-btn");
@@ -45,23 +44,21 @@ export async function initSidebar() {
         return;
     }
 
-    // Toggle Sidebar
-    // Clone node to remove old listeners if any, or just add new one carefully. 
-    // Simple approach: just add listener, assuming idempotent or ok.
-    menuBtn.onclick = (e) => { // Use onclick to override potential duplicates
+    
+    menuBtn.onclick = (e) => { 
         console.log("Menu clicked");
         e.stopPropagation();
         sidebar.classList.toggle("open");
     };
 
-    // Fermer sidebar si clic en dehors
+    
     document.onclick = (e) => {
         if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.classList.contains("open")) {
             sidebar.classList.remove("open");
         }
     };
 
-    // Charger les empires (MOCK)
+    
     if (MOCK_EMPIRES && MOCK_EMPIRES.length > 0) {
         sidebarList.innerHTML = "";
         MOCK_EMPIRES.forEach(emp => {
@@ -77,7 +74,6 @@ export async function initSidebar() {
     }
 }
 
-// === Search Logic ===
 export function initSearch() {
     const searchInput = document.getElementById("searchInput");
     if (!searchInput) return;
@@ -87,7 +83,6 @@ export function initSearch() {
             const query = searchInput.value.trim().toLowerCase();
             if (!query) return;
 
-            // Chercher dans MOCK DATA
             const empire = MOCK_EMPIRES.find(e => e.name.toLowerCase().includes(query));
 
             if (empire) {
@@ -99,7 +94,6 @@ export function initSearch() {
     });
 }
 
-// Main init function
 export async function initUI() {
     try {
         await initNavbar();

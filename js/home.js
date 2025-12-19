@@ -1,18 +1,15 @@
-import { supabase } from "./supabase.js"; // Gardé pour compatibilité imports mais pas utilisé
+import { supabase } from "./supabase.js";
 import { requireAuth } from "./auth.js";
 import { initUI } from "./ui.js";
 import { MOCK_EMPIRES } from "./mock_data.js";
 
-// Protection de la route
 await requireAuth();
 
-// Initialisation UI globale (Sidebar, Navbar, Search)
 initUI();
 
 const cardsContainer = document.getElementById("empire-cards");
 
 async function loadEmpires() {
-  // DEMO MODE: Use MOCK DATA
   const empires = MOCK_EMPIRES;
 
   cardsContainer.innerHTML = "";

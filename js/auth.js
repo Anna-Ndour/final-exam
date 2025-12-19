@@ -1,13 +1,8 @@
-// MOCK AUTH SERVICE -- DEMO MODE
-// import { supabase } from "./supabase.js"; // Désactivé
-
 export async function signUp(email, password) {
-  // Simulate success
+  
   return { data: { session: { user: { email } } }, error: null };
 }
-
 export async function signIn(email, password) {
-  // Simulate success
   localStorage.setItem("demo_user", JSON.stringify({ email }));
   return { data: { session: { user: { email } } }, error: null };
 }
